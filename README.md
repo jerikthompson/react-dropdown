@@ -39,7 +39,7 @@ Object Array options
 ```JavaScript
 
 const options = [
-  { value: 'one', label: 'One' },
+  { value: 'one', label: 'One', iconClasses: 'fa fa-trash' },
   { value: 'two', label: 'Two' },
   {
    type: 'group', name: 'group1', items: [
