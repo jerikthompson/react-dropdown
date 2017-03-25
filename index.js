@@ -12,7 +12,8 @@ class Dropdown extends Component {
         label: props.placeholder || DEFAULT_PLACEHOLDER_STRING,
         value: ''
       },
-      isOpen: false
+      isOpen: false,
+      options: this.props.options || []
     }
     this.mounted = true
     this.handleDocumentClick = this.handleDocumentClick.bind(this)
@@ -70,6 +71,10 @@ class Dropdown extends Component {
     }
   }
 
+  iconClicked (value) {
+    this.props.itemIconClick(value)
+  }
+
   renderOption (option) {
     let optionClass = classNames({
       [`${this.props.baseClassName}-option`]: true,
@@ -78,24 +83,28 @@ class Dropdown extends Component {
 
     let value = option.value || option.label || option
     let label = option.label || option.value || option
-
+    let icon = null
+    if (option.iconClasses) {
+      icon = <div className='pull-right' style={{ 'width': '18px' }}><i className={option.iconClasses} onMouseDown={this.iconClicked.bind(this, value)} /></div>
+    }
     return (
-      <div
-        key={value}
+      <div key={value}
         className={optionClass}
         onMouseDown={this.setValue.bind(this, value, label)}
         onClick={this.setValue.bind(this, value, label)}>
-        {label}
+        <div style={{ 'width': '100%' }}>{label}</div>
+        {icon}
       </div>
     )
   }
 
   buildMenu () {
-    let { options, baseClassName } = this.props
-    let ops = options.map((option) => {
+    let { options } = this.state
+    let { baseClassName } = this.props
+    let ops = options ? options.map((option) => {
       if (option.type === 'group') {
         let groupTitle = (<div className={`${baseClassName}-title`}>{option.name}</div>)
-        let _options = option.items.map((item) => this.renderOption(item))
+        let _options = option.items ? option.items.map((item) => this.renderOption(item)) : null
 
         return (
           <div className={`${baseClassName}-group`} key={option.name}>
@@ -106,7 +115,7 @@ class Dropdown extends Component {
       } else {
         return this.renderOption(option)
       }
-    })
+    }) : null
 
     return ops.length ? ops : <div className={`${baseClassName}-noresults`}>No options found</div>
   }

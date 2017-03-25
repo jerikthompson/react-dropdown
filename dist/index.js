@@ -117,7 +117,10 @@ var Dropdown = function (_Component) {
 
       var value = option.value || option.label || option;
       var label = option.label || option.value || option;
-
+      var icon = null;
+      if (option.classes) {
+        icon = _react2.default.createElement('i', { className: option.classes + ' pull-right' });
+      }
       return _react2.default.createElement(
         'div',
         {
@@ -125,7 +128,8 @@ var Dropdown = function (_Component) {
           className: optionClass,
           onMouseDown: this.setValue.bind(this, value, label),
           onClick: this.setValue.bind(this, value, label) },
-        label
+        label,
+        icon
       );
     }
   }, {
@@ -133,9 +137,8 @@ var Dropdown = function (_Component) {
     value: function buildMenu() {
       var _this2 = this;
 
-      var _props = this.props,
-          options = _props.options,
-          baseClassName = _props.baseClassName;
+      var options = this.state.options;
+      var baseClassName = this.props.baseClassName;
 
       var ops = options.map(function (option) {
         if (option.type === 'group') {

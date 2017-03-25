@@ -10,25 +10,28 @@ class ObjectArrayExample extends Component {
     this._onSelect = this._onSelect.bind(this)
   }
 
+  _itemOnClick (clickedItemValue) {
+    console.log('icon was clicked: ', clickedItemValue)
+  }
+
   _onSelect (option) {
-    console.log('You selected ', option.label)
     this.setState({selected: option})
   }
 
   render () {
     const options = [
-      { value: 'one', label: 'One' },
-      { value: 'two', label: 'Two' },
+      { value: 'one', label: 'One', iconClasses: 'fa fa-trash' },
+      { value: 'two', label: 'Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two ', iconClasses: 'fa fa-trash' },
       {
        type: 'group', name: 'group1', items: [
-         { value: 'three', label: 'Three' },
-         { value: 'four', label: 'Four' }
+         { value: 'three', label: 'Three', iconClasses: 'fa fa-trash' },
+         { value: 'four', label: 'Four', iconClasses: 'fa fa-trash' }
        ]
       },
       {
        type: 'group', name: 'group2', items: [
-         { value: 'five', label: 'Five' },
-         { value: 'six', label: 'Six' }
+         { value: 'five', label: 'Five', iconClasses: 'fa fa-trash' },
+         { value: 'six', label: 'Six', iconClasses: 'fa fa-trash' }
        ]
       }
     ]
@@ -39,7 +42,7 @@ class ObjectArrayExample extends Component {
     return (
       <section>
         <h4>Object Array Example </h4>
-        <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+        <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" itemIconClick={this._itemOnClick} />
         <div className='result'>
           You selected
           <strong> {placeHolderValue} </strong>

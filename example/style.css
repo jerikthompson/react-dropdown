@@ -90,8 +90,10 @@ pre code {
   box-sizing: border-box;
   color: rgba(51, 51, 51, 0.8);
   cursor: pointer;
-  display: block;
+  display: inline-flex;
+  align-items: center;
   padding: 8px 10px;
+  width:100%;
 }
 
 .Dropdown-option:last-child {
