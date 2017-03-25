@@ -43,7 +43,8 @@ var Dropdown = function (_Component) {
         label: props.placeholder || DEFAULT_PLACEHOLDER_STRING,
         value: ''
       },
-      isOpen: false
+      isOpen: false,
+      options: _this.props.options || []
     };
     _this.mounted = true;
     _this.handleDocumentClick = _this.handleDocumentClick.bind(_this);
@@ -109,6 +110,11 @@ var Dropdown = function (_Component) {
       }
     }
   }, {
+    key: 'iconClicked',
+    value: function iconClicked(value) {
+      this.props.itemIconClick(value);
+    }
+  }, {
     key: 'renderOption',
     value: function renderOption(option) {
       var _classNames;
@@ -118,17 +124,24 @@ var Dropdown = function (_Component) {
       var value = option.value || option.label || option;
       var label = option.label || option.value || option;
       var icon = null;
-      if (option.classes) {
-        icon = _react2.default.createElement('i', { className: option.classes + ' pull-right' });
+      if (option.iconClasses) {
+        icon = _react2.default.createElement(
+          'div',
+          { className: 'pull-right', style: { 'width': '18px' } },
+          _react2.default.createElement('i', { className: option.iconClasses, onMouseDown: this.iconClicked.bind(this, value) })
+        );
       }
       return _react2.default.createElement(
         'div',
-        {
-          key: value,
+        { key: value,
           className: optionClass,
           onMouseDown: this.setValue.bind(this, value, label),
           onClick: this.setValue.bind(this, value, label) },
-        label,
+        _react2.default.createElement(
+          'div',
+          { style: { 'width': '100%' } },
+          label
+        ),
         icon
       );
     }
@@ -140,16 +153,16 @@ var Dropdown = function (_Component) {
       var options = this.state.options;
       var baseClassName = this.props.baseClassName;
 
-      var ops = options.map(function (option) {
+      var ops = options ? options.map(function (option) {
         if (option.type === 'group') {
           var groupTitle = _react2.default.createElement(
             'div',
             { className: baseClassName + '-title' },
             option.name
           );
-          var _options = option.items.map(function (item) {
+          var _options = option.items ? option.items.map(function (item) {
             return _this2.renderOption(item);
-          });
+          }) : null;
 
           return _react2.default.createElement(
             'div',
@@ -160,7 +173,7 @@ var Dropdown = function (_Component) {
         } else {
           return _this2.renderOption(option);
         }
-      });
+      }) : null;
 
       return ops.length ? ops : _react2.default.createElement(
         'div',
