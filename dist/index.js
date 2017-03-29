@@ -214,10 +214,10 @@ var Dropdown = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: dropdownClass },
+        { className: dropdownClass, style: { 'display': 'inline' } },
         _react2.default.createElement(
           'div',
-          { className: baseClassName + '-control ' + disabledClass, onMouseDown: this.handleMouseDown.bind(this), onTouchEnd: this.handleMouseDown.bind(this) },
+          { className: baseClassName + '-control ' + disabledClass, onMouseDown: this.handleMouseDown.bind(this), onTouchEnd: this.handleMouseDown.bind(this), style: { 'display': 'inline' } },
           value,
           _react2.default.createElement('span', { className: baseClassName + '-arrow' })
         ),
