@@ -141,8 +141,8 @@ class Dropdown extends Component {
     })
 
     return (
-      <div className={dropdownClass}>
-        <div className={`${baseClassName}-control ${disabledClass}`} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)}>
+      <div className={dropdownClass} style={{'display': 'inline'}}>
+        <div className={`${baseClassName}-control ${disabledClass}`} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)} style={{'display': 'inline'}}>
           {value}
           <span className={`${baseClassName}-arrow`} />
         </div>
