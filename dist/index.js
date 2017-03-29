@@ -200,7 +200,7 @@ var Dropdown = function (_Component) {
       var disabledClass = this.props.disabled ? 'Dropdown-disabled' : '';
       var placeHolderValue = typeof this.state.selected === 'string' ? this.state.selected : this.state.selected.label;
       var value = _react2.default.createElement(
-        'div',
+        'span',
         { className: baseClassName + '-placeholder' },
         placeHolderValue
       );
