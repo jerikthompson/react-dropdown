@@ -43,7 +43,6 @@ var Dropdown = function (_Component) {
       options: _this.props.options || []
     };
     _this.mounted = true;
-    _this.handleDocumentClick = _this.handleDocumentClick.bind(_this);
     _this.fireChangeEvent = _this.fireChangeEvent.bind(_this);
     return _this;
   }
@@ -178,13 +177,9 @@ var Dropdown = function (_Component) {
       );
     }
   }, {
-    key: 'handleDocumentClick',
-    value: function handleDocumentClick(event) {
-      if (this.mounted) {
-        if (!this.refs.a.contains(event.target)) {
-          this.setState({ isOpen: false });
-        }
-      }
+    key: 'collapse',
+    value: function collapse() {
+      this.setState({ isOpen: false });
     }
   }, {
     key: 'render',
@@ -210,7 +205,7 @@ var Dropdown = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: dropdownClass, style: { 'display': 'inline' } },
+        { className: dropdownClass, style: { 'display': 'inline' }, onBlur: this.collapse },
         _react2.default.createElement(
           'div',
           { className: baseClassName + '-control ' + disabledClass, onMouseDown: this.handleMouseDown.bind(this), onTouchEnd: this.handleMouseDown.bind(this), style: { 'display': 'inline' } },

@@ -15,7 +15,6 @@ class Dropdown extends Component {
       options: this.props.options || []
     }
     this.mounted = true
-    this.handleDocumentClick = this.handleDocumentClick.bind(this)
     this.fireChangeEvent = this.fireChangeEvent.bind(this)
   }
 
@@ -118,15 +117,9 @@ class Dropdown extends Component {
 
     return ops.length ? ops : <div className={`${baseClassName}-noresults`}>No options found</div>
   }
-
-  handleDocumentClick (event) {
-    if (this.mounted) {
-      if (!this.refs.a.contains(event.target)) {
-        this.setState({ isOpen: false })
-      }
-    }
+  collapse () {
+    this.setState({ isOpen: false })
   }
-
   render () {
     const { baseClassName } = this.props
     const disabledClass = this.props.disabled ? 'Dropdown-disabled' : ''
@@ -140,7 +133,7 @@ class Dropdown extends Component {
     })
 
     return (
-      <div className={dropdownClass} style={{'display': 'inline'}}>
+      <div className={dropdownClass} style={{'display': 'inline'}} onBlur={this.collapse}>
         <div className={`${baseClassName}-control ${disabledClass}`} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)} style={{'display': 'inline'}}>
           {value}
           <span className={`${baseClassName}-arrow`} />
