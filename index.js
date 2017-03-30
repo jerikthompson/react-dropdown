@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 
 const DEFAULT_PLACEHOLDER_STRING = 'Select...'
@@ -122,7 +121,7 @@ class Dropdown extends Component {
 
   handleDocumentClick (event) {
     if (this.mounted) {
-      if (!ReactDOM.findDOMNode(this).contains(event.target)) {
+      if (!this.refs.a.contains(event.target)) {
         this.setState({ isOpen: false })
       }
     }

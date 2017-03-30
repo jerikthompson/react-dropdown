@@ -10,10 +10,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -185,7 +181,7 @@ var Dropdown = function (_Component) {
     key: 'handleDocumentClick',
     value: function handleDocumentClick(event) {
       if (this.mounted) {
-        if (!_reactDom2.default.findDOMNode(this).contains(event.target)) {
+        if (!this.refs.a.contains(event.target)) {
           this.setState({ isOpen: false });
         }
       }
