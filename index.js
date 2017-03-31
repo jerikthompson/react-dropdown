@@ -127,6 +127,7 @@ class Dropdown extends Component {
   render () {
     const { baseClassName } = this.props
     const disabledClass = this.props.disabled ? 'Dropdown-disabled' : ''
+    console.log('selected item on render: ', this.state.selected)
     const placeHolderValue = typeof this.state.selected === 'string' ? this.state.selected : this.state.selected.label
     let value = (<span className={`${baseClassName}-placeholder`} >{placeHolderValue}</span>)
     let menu = this.state.isOpen ? <div className={`${baseClassName}-menu`}>{this.buildMenu()}</div> : null
