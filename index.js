@@ -19,6 +19,7 @@ class Dropdown extends Component {
   }
 
   componentWillReceiveProps (newProps) {
+    console.log('props changed: ', newProps)
     if (newProps.value && newProps.value !== this.state.selected) {
       this.setState({selected: newProps.value})
     } else if (!newProps.value && newProps.placeholder) {
