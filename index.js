@@ -92,7 +92,7 @@ class Dropdown extends Component {
         className={optionClass}
         onMouseDown={this.setValue.bind(this, value, label)}
         onClick={this.setValue.bind(this, value, label)}>
-        <div style={{ 'width': '100%' }}>{label}</div>
+        <div style={{ 'display': 'inline' }}>{label}</div>
         {icon}
       </div>
     )

@@ -135,7 +135,7 @@ var Dropdown = function (_Component) {
           onClick: this.setValue.bind(this, value, label) },
         _react2.default.createElement(
           'div',
-          { style: { 'width': '100%' } },
+          { style: { 'display': 'inline' } },
           label
         ),
         icon
