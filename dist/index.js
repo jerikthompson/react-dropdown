@@ -50,13 +50,13 @@ var Dropdown = function (_Component) {
   _createClass(Dropdown, [{
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      console.log('props changed: ', newProps);
       if (newProps.value && newProps.value !== this.state.selected) {
         this.setState({ selected: newProps.value });
       } else if (!newProps.value && newProps.placeholder) {
         this.setState({ selected: { label: newProps.placeholder, value: '' } });
-      } else {
-        this.setState({ selected: { label: DEFAULT_PLACEHOLDER_STRING, value: '' } });
+      }
+      if (newProps.options) {
+        this.setState({ options: newProps.options });
       }
     }
   }, {
@@ -114,10 +114,6 @@ var Dropdown = function (_Component) {
     key: 'renderOption',
     value: function renderOption(option) {
       var _classNames;
-
-      console.log('rendering: ', option);
-      console.log('selected: ', this.state.selected);
-      console.log('equal: ', option === this.state.selected);
 
       var optionClass = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, this.props.baseClassName + '-option', true), _defineProperty(_classNames, 'is-selected', option === this.state.selected), _classNames));
 
@@ -194,7 +190,6 @@ var Dropdown = function (_Component) {
       var baseClassName = this.props.baseClassName;
 
       var disabledClass = this.props.disabled ? 'Dropdown-disabled' : '';
-      console.log('selected item on render: ', this.state.selected);
       var placeHolderValue = typeof this.state.selected === 'string' ? this.state.selected : this.state.selected.label;
       var value = _react2.default.createElement(
         'span',

@@ -19,13 +19,14 @@ class Dropdown extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    console.log('props changed: ', newProps)
     if (newProps.value && newProps.value !== this.state.selected) {
       this.setState({selected: newProps.value})
     } else if (!newProps.value && newProps.placeholder) {
       this.setState({selected: { label: newProps.placeholder, value: '' }})
-    } else {
-      this.setState({selected: { label: DEFAULT_PLACEHOLDER_STRING, value: '' }})
+    }
+    if (newProps.options)
+    {
+      this.setState({ options: newProps.options});
     }
   }
 
@@ -75,10 +76,6 @@ class Dropdown extends Component {
   }
 
   renderOption (option) {
-    console.log('rendering: ', option)
-    console.log('selected: ', this.state.selected)
-    console.log('equal: ', option === this.state.selected)
-
     let optionClass = classNames({
       [`${this.props.baseClassName}-option`]: true,
       'is-selected': option === this.state.selected
@@ -128,7 +125,6 @@ class Dropdown extends Component {
   render () {
     const { baseClassName } = this.props
     const disabledClass = this.props.disabled ? 'Dropdown-disabled' : ''
-    console.log('selected item on render: ', this.state.selected)
     const placeHolderValue = typeof this.state.selected === 'string' ? this.state.selected : this.state.selected.label
     let value = (<span className={`${baseClassName}-placeholder`} >{placeHolderValue}</span>)
     let menu = this.state.isOpen ? <div className={`${baseClassName}-menu`}>{this.buildMenu()}</div> : null
