@@ -114,6 +114,10 @@ var Dropdown = function (_Component) {
     value: function renderOption(option) {
       var _classNames;
 
+      console.log('rendering: ', option);
+      console.log('selected: ', this.state.selected);
+      console.log('equal: ', option === this.state.selected);
+
       var optionClass = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, this.props.baseClassName + '-option', true), _defineProperty(_classNames, 'is-selected', option === this.state.selected), _classNames));
 
       var value = option.value || option.label || option;

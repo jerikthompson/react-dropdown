@@ -74,6 +74,10 @@ class Dropdown extends Component {
   }
 
   renderOption (option) {
+    console.log('rendering: ', option)
+    console.log('selected: ', this.state.selected)
+    console.log('equal: ', option === this.state.selected)
+
     let optionClass = classNames({
       [`${this.props.baseClassName}-option`]: true,
       'is-selected': option === this.state.selected
