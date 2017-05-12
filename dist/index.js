@@ -37,7 +37,8 @@ var Dropdown = function (_Component) {
     _this.state = {
       selected: props.value || {
         label: props.placeholder || DEFAULT_PLACEHOLDER_STRING,
-        value: ''
+        value: '',
+        display: props.display || 'inline-block'
       },
       isOpen: false,
       options: _this.props.options || []
@@ -206,7 +207,7 @@ var Dropdown = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: dropdownClass, style: { 'display': 'inline' }, onBlur: this.collapse },
+        { className: dropdownClass, style: { 'display': this.state.display }, onBlur: this.collapse },
         _react2.default.createElement(
           'div',
           { className: baseClassName + '-control ' + disabledClass, onMouseDown: this.handleMouseDown.bind(this), onTouchEnd: this.handleMouseDown.bind(this), style: { 'display': 'inline' } },

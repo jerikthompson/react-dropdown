@@ -9,7 +9,8 @@ class Dropdown extends Component {
     this.state = {
       selected: props.value || {
         label: props.placeholder || DEFAULT_PLACEHOLDER_STRING,
-        value: ''
+        value: '',
+        display: props.display || 'inline-block'
       },
       isOpen: false,
       options: this.props.options || []
@@ -26,7 +27,7 @@ class Dropdown extends Component {
     }
     if (newProps.options)
     {
-      this.setState({ options: newProps.options});
+      this.setState({ options: newProps.options})
     }
   }
 
@@ -135,7 +136,7 @@ class Dropdown extends Component {
     })
 
     return (
-      <div className={dropdownClass} style={{'display': 'inline'}} onBlur={this.collapse}>
+      <div className={dropdownClass} style={{'display': this.state.display}} onBlur={this.collapse}>
         <div className={`${baseClassName}-control ${disabledClass}`} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)} style={{'display': 'inline'}}>
           {value}
           <span className={`${baseClassName}-arrow`} />
