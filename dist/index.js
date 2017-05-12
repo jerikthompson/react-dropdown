@@ -204,13 +204,15 @@ var Dropdown = function (_Component) {
       ) : null;
 
       var dropdownClass = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, baseClassName + '-root', true), _defineProperty(_classNames2, 'is-open', this.state.isOpen), _classNames2));
-
+      var displayStyle = {
+        display: this.state.display
+      };
       return _react2.default.createElement(
         'div',
-        { className: dropdownClass, style: { 'display': this.state.display }, onBlur: this.collapse },
+        { className: dropdownClass, style: displayStyle, onBlur: this.collapse },
         _react2.default.createElement(
           'div',
-          { className: baseClassName + '-control ' + disabledClass, onMouseDown: this.handleMouseDown.bind(this), onTouchEnd: this.handleMouseDown.bind(this), style: { 'display': 'inline' } },
+          { className: baseClassName + '-control ' + disabledClass, onMouseDown: this.handleMouseDown.bind(this), onTouchEnd: this.handleMouseDown.bind(this), style: displayStyle },
           value,
           _react2.default.createElement('span', { className: baseClassName + '-arrow' })
         ),
