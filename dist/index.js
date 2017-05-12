@@ -37,8 +37,7 @@ var Dropdown = function (_Component) {
     _this.state = {
       selected: props.value || {
         label: props.placeholder || DEFAULT_PLACEHOLDER_STRING,
-        value: '',
-        display: props.display || 'inline-block'
+        value: ''
       },
       isOpen: false,
       options: _this.props.options || []
@@ -205,8 +204,9 @@ var Dropdown = function (_Component) {
 
       var dropdownClass = (0, _classnames2.default)((_classNames2 = {}, _defineProperty(_classNames2, baseClassName + '-root', true), _defineProperty(_classNames2, 'is-open', this.state.isOpen), _classNames2));
       var displayStyle = {
-        display: this.state.display
+        display: this.props.display || 'inline-block'
       };
+
       return _react2.default.createElement(
         'div',
         { className: dropdownClass, style: displayStyle, onBlur: this.collapse },

@@ -9,8 +9,7 @@ class Dropdown extends Component {
     this.state = {
       selected: props.value || {
         label: props.placeholder || DEFAULT_PLACEHOLDER_STRING,
-        value: '',
-        display: props.display || 'inline-block'
+        value: ''
       },
       isOpen: false,
       options: this.props.options || []
@@ -135,8 +134,9 @@ class Dropdown extends Component {
       'is-open': this.state.isOpen
     })
     let displayStyle = {
-        display: this.state.display
+        display: this.props.display || 'inline-block'
     }
+    
     return (
       <div className={dropdownClass} style={displayStyle} onBlur={this.collapse}>
         <div className={`${baseClassName}-control ${disabledClass}`} onMouseDown={this.handleMouseDown.bind(this)} onTouchEnd={this.handleMouseDown.bind(this)} style={displayStyle}>
